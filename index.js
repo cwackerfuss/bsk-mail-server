@@ -41,7 +41,27 @@ app.post('/backup', function(req, res) {
   const message = {
     to: recipientEmail,
     from: 'hello@blockstack.org',
-    subject: 'Your Blockstack keychain backup',
+    subject: 'Your Blockstack Recovery Kit',
+    html: html
+  }
+  mailgun.messages().send(message).then(
+    (response, err) => { res.send('OK') },
+    (error) => { console.error(error) }
+  )
+})
+
+app.post('/verify', function(req, res) {
+  const recipientEmail = req.body.email
+  const emailVerificationLink = req.body.emailVerificationLink
+
+  const html = pug.renderFile(`${mailerPath}/verification.pug`, {
+    emailVerificationLink
+  })
+
+  const message = {
+    to: recipientEmail,
+    from: 'hello@blockstack.org',
+    subject: 'Verify your email with Blockstack',
     html: html
   }
   mailgun.messages().send(message).then(
