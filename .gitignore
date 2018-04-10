@@ -1,0 +1,6 @@
+dump.rdb
+node_modules
+data
+npm-debug.log
+.DS_Store
+/*.env

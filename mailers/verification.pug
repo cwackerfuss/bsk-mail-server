@@ -1,0 +1,29 @@
+- var title = 'Verify Email - Blockstack'
+include includes/head
+body
+  table.body(border="0" cellpadding="0" cellspacing="0")
+    tr
+      td  
+      td.container
+        .content
+          // START CENTERED WHITE CONTAINER
+          span.preheader Your pin is #{'1234'}
+          table.main
+            // START MAIN CONTENT AREA
+            tr
+              td.wrapper
+                table(border="0" cellpadding="0" cellspacing="0")
+                  tr
+                    td
+                      h1 Your verification pin:
+                      table(width="100%" border="0" cellpadding="0" cellspacing="0")
+                        tr
+                          td(align="center")
+                            h2(style="background-color: #efefef; padding: 10px;") #{'1234'}
+                      br
+                      p Enter this pin in the window you initiated the verification from.
+                      p(style="font-style: italic") The pin is only valid in your existing session.
+            // END MAIN CONTENT AREA
+          include includes/foot
+          // END CENTERED WHITE CONTAINER
+      td  
