@@ -16,7 +16,7 @@ const mailgun = require('mailgun-js')({
   domain: getEnvVar('MAILGUN_DOMAIN')
 })
 
-const mailerPath = path.join(__dirname, "mailers")
+const mailerPath = path.join(__dirname, "views/mailers")
 
 const PORT = process.env.PORT || 5000;
 
