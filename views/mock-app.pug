@@ -1,0 +1,43 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1, shrink-to-fit=no')
+    meta(name='description', content='')
+    meta(name='author', content='')
+    title DotPodcast
+    // Bootstrap core CSS
+    link(href='https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css', rel='stylesheet')
+    // Custom fonts for this template
+    link(href='https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900', rel='stylesheet')
+    link(href='https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i', rel='stylesheet')
+    // Custom styles for this template
+    include mock-app-styles
+  body
+    // Navigation
+    nav.navbar.navbar-expand-lg.navbar-dark.navbar-custom.fixed-top
+      .container
+        img(src='https://browser.blockstack.org/images/app-icon-dotpodcast-256x256.png', style="width: 75px; margin-right: 15px;")
+        a.navbar-brand(href='#') DotPodcast
+          
+        button.navbar-toggler(type='button', data-toggle='collapse', data-target='#navbarResponsive', aria-controls='navbarResponsive', aria-expanded='false', aria-label='Toggle navigation')
+          span.navbar-toggler-icon
+        #navbarResponsive.collapse.navbar-collapse
+          ul.navbar-nav.ml-auto
+            li.nav-item
+              a.nav-link(href='https://deploy-preview-1268--reporter-beaver-73821.netlify.com/onboarding') Log In
+            li.nav-item
+    header.masthead.text-center.text-white
+      .masthead-content
+        .container
+          h1.masthead-heading.mb-0 Better Podcasting
+          h2.masthead-subheading.mb-0 Better for you, better for the content creator.
+          a.btn.btn-primary.btn-xl.rounded-pill.mt-5(href='https://deploy-preview-1268--reporter-beaver-73821.netlify.com/onboarding') Log In
+      .bg-circle-1.bg-circle
+      .bg-circle-2.bg-circle
+      .bg-circle-3.bg-circle
+      .bg-circle-4.bg-circle
+    footer.py-5.bg-black
+      .container
+        p.m-0.text-center.text-white.small DotPodcast 2018
+      // /.container

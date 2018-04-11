@@ -26,7 +26,7 @@ app.use(bodyParser.json());
 app.use(cors())
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "pug");
-app.set("views", path.join(__dirname, "mailers"));
+app.set("views", path.join(__dirname, "views"));
 
 const mailers = [
   'recovery',
@@ -34,8 +34,10 @@ const mailers = [
 ]
 
 mailers.forEach(function(mailer) {
-  app.get(`/${mailer}`, (req, res) => { res.render(mailer) })
+  app.get(`/${mailer}`, (req, res) => { res.render(`mailers/${mailer}`) })
 })
+
+app.get('/dotpodcast', (req, res) => { res.render('mock-app') })
 
 app.post('/backup', function(req, res) {
   const recipientEmail = req.body.email
