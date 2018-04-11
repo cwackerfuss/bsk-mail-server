@@ -2,11 +2,18 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const cors = require('cors')
 const path = require('path')
-const pug = require('pug');
+const pug = require('pug')
+require('dotenv').config()
+
+const getEnvVar = (name) => {
+  if (process.env[name]) return process.env[name]
+  console.error(name + ' is not set in your env file.')
+  return null;
+}
 
 const mailgun = require('mailgun-js')({
-  apiKey: 'key-93a843e125e9e81bdba7da0ace677387',
-  domain: 'sandboxd3b3903c153d4279963f0787a3061f0c.mailgun.org'
+  apiKey: getEnvVar('MAILGUN_API_KEY'),
+  domain: getEnvVar('MAILGUN_DOMAIN')
 })
 
 const mailerPath = path.join(__dirname, "mailers")
