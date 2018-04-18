@@ -1,4 +1,4 @@
-- var title = 'Recovery Key - Blockstack'
+- var title = 'Restore ID - Blockstack'
 include includes/head
 body
   table.body(border="0" cellpadding="0" cellspacing="0")
@@ -7,7 +7,7 @@ body
       td.container
         .content
           // START CENTERED WHITE CONTAINER
-          span.preheader Writing down your secret recovery key is a reliable way to recover your Blockstack ID.
+          span.preheader Magic link: Save this  email forever
           table.main
             // START MAIN CONTENT AREA
             tr
@@ -15,10 +15,9 @@ body
                 table(border="0" cellpadding="0" cellspacing="0")
                   tr
                     td
-                      h3 Secret Recovery Key:  Action required for #{blockstackId || 'your ID'}
-                      p Writing down your secret recovery key is a reliable way to recover your Blockstack ID. 
-                      p Save your secret recovery key a secret place (we suggest writing it down on paper). Blockstack IDs are fully decentralized, which means anyone who has the secret recovery key effectively owns the ID. 
-                      p Your account is secure, but you need to write down your secret recovery key.
+                      h3 Magic link: Save this  email forever - #{blockstackId || 'Your Blockstack ID'}
+                      p You can recover your Blockstack ID on any device, by tapping the magic link below and entering your password (the password you entered when you created this Blockstack ID). 
+                      p Save this email forever, we only send you this magic link once when you create your ID.
                       br
                       table.btn.btn-primary(border="0" cellpadding="0" cellspacing="0")
                         tbody
@@ -28,7 +27,7 @@ body
                                 tbody
                                   tr
                                     td
-                                      a(href=seedRecovery target="_blank") View secret recovery key
+                                      a(href=seedRecovery target="_blank") Restore your ID
             // END MAIN CONTENT AREA
           include includes/foot
           // END CENTERED WHITE CONTAINER

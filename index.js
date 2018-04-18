@@ -30,7 +30,8 @@ app.set("views", path.join(__dirname, "views"));
 
 const mailers = [
   'recovery',
-  'verification'
+  'verification',
+  'restore'
 ]
 
 mailers.forEach(function(mailer) {
@@ -39,18 +40,42 @@ mailers.forEach(function(mailer) {
 
 app.get('/dotpodcast', (req, res) => { res.render('mock-app') })
 
-app.post('/backup', function(req, res) {
+app.post('/recovery', function(req, res) {
   const recipientEmail = req.body.email
   const seedRecovery = req.body.seedRecovery
+  const blockstackId = req.body.blockstackId
 
   const html = pug.renderFile(`${mailerPath}/recovery.pug`, {
-    seedRecovery
+    seedRecovery,
+    blockstackId
   })
 
   const message = {
     to: recipientEmail,
     from: 'hello@blockstack.org',
-    subject: 'Your Blockstack Recovery Kit',
+    subject: `${blockstackId} - Secret Recovery Key:  Action required`,
+    html: html
+  }
+  mailgun.messages().send(message).then(
+    (response, err) => { res.send('OK') },
+    (error) => { console.error(error) }
+  )
+})
+
+app.post('/restore', function(req, res) {
+  const recipientEmail = req.body.email
+  const restoreLink = req.body.restoreLink
+  const blockstackId = req.body.blockstackId
+
+  const html = pug.renderFile(`${mailerPath}/restore.pug`, {
+    restoreLink,
+    blockstackId
+  })
+
+  const message = {
+    to: recipientEmail,
+    from: 'hello@blockstack.org',
+    subject: `${blockstackId} - Magic link: Save this  email forever`,
     html: html
   }
   mailgun.messages().send(message).then(
@@ -70,7 +95,7 @@ app.post('/verify', function(req, res) {
   const message = {
     to: recipientEmail,
     from: 'hello@blockstack.org',
-    subject: 'Verify your email with Blockstack',
+    subject: 'Blockstack ID — Verify your email',
     html: html
   }
   mailgun.messages().send(message).then(
