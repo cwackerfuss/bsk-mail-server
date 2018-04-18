@@ -35,7 +35,7 @@ const mailers = [
 ]
 
 mailers.forEach(function(mailer) {
-  app.get(`/${mailer}`, (req, res) => { res.render(`mailers/${mailer}`) })
+  app.get(`/mailers/${mailer}`, (req, res) => { res.render(`mailers/${mailer}`) })
 })
 
 app.get('/dotpodcast', (req, res) => { res.render('mock-app') })
