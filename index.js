@@ -1,5 +1,6 @@
 const express = require('express')
 const bodyParser = require('body-parser')
+const cors = require('cors')
 const path = require('path')
 const pug = require('pug')
 require('dotenv').config()
@@ -12,7 +13,7 @@ const getEnvVar = (name) => {
 
 const mailgun = require('mailgun-js')({
   apiKey: getEnvVar('MAILGUN_API_KEY'),
-  domain: getEnvVar('MAILGUN_DOMAIN')
+  domain: getEnvVar('MAILGUN_DOMAIN') || 'blockstack.org'
 })
 
 const mailerPath = path.join(__dirname, "views/mailers")
@@ -22,7 +23,7 @@ const PORT = process.env.PORT || 5000;
 // spin up server
 const app = express();
 app.use(bodyParser.json());
-app.use(cors)
+app.use(cors())
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "pug");
 app.set("views", path.join(__dirname, "views"));
@@ -102,20 +103,6 @@ app.post('/verify', function(req, res) {
     (error) => { console.error(error) }
   )
 })
-
-function cors(req, res, next){
-  res.set('Access-Control-Allow-Origin', req.headers.origin);
-  res.set('Access-Control-Allow-Methods', req.method);
-  res.set('Access-Control-Allow-Headers', 'X-Requested-With, Content-Type');
-  res.set('Access-Control-Allow-Credentials', true);
-
-  // Respond OK if the method is OPTIONS
-  if(req.method === 'OPTIONS') {
-    return res.send(200);
-  } else {
-    return next();
-  }
-}
 
 app.listen(PORT, function () {
   console.log(`Example app listening on port ${PORT}!`);
